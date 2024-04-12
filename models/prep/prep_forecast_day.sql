@@ -3,14 +3,13 @@ WITH forecast_day_data AS (
     FROM {{ref('staging_forecast_day')}}
 ),
 add_features AS (
-    SELECT *
-        ,DATE_PART('day', date) AS day_of_month -- day of month as a number
-        ,TO_CHAR('month', date) AS month_of_year -- month name as a text
-        ,DATE_PART('year', date) AS year -- year as a number
-        ,TO_CHAR('day', date) AS day_of_week -- weekday name as text
-        ,DATE_PART('week', date) AS week_of_year -- calender week number as number
-        ,DATE_PART('YYYY-IW', date) AS year_and_week -- year-calenderweek as text like '2024-43'
-
+    SELECT *,
+        DATE_PART('day', date) AS day_of_month,
+        TO_CHAR(date, 'Month') AS month_of_year,
+        DATE_PART('year', date) AS year,
+        TO_CHAR(date, 'Day') AS day_of_week,
+        DATE_PART('week', date) AS week_of_year,
+        TO_CHAR(date, 'YYYY-IW') AS year_and_week -- Year and ISO week
     FROM forecast_day_data
 )
 SELECT *
