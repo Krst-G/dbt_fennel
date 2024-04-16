@@ -37,7 +37,7 @@ filtering_features AS (
             -- ,moon_phase
             -- ,moon_illumination
             -- ,day_of_month
-            -- ,month_of_year
+            ,month_of_year
             -- ,day_of_week
         FROM joining_day_location
 ),          
