@@ -9,4 +9,4 @@ group by city
 	,month_of_year
 	,num_month 
 order by city asc
-	,num_month asc;
+	,num_month asc
