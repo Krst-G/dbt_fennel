@@ -18,7 +18,7 @@ filtering_ordering_features AS (
             date
             ,day_of_month
             ,month_of_year
-            ,month
+            ,month  --- newly added
             ,year
             ,day_of_week
             ,week_of_year
