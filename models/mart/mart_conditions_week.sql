@@ -7,6 +7,7 @@ filtering_features AS (
         SELECT 
             year_and_week
             ,week_of_year
+            ,month
             ,year
             ,city
             ,region
@@ -45,6 +46,7 @@ aggregations_adding_features AS (
         SELECT 
             year_and_week  -- grouping on
             ,week_of_year   -- grouping on
+            ,month
             ,year           -- grouping on
             ,city           -- grouping on
             ,region         -- grouping on
@@ -84,7 +86,7 @@ aggregations_adding_features AS (
                             'Patchy sleet possible', 'Ice pellets') 
                             THEN 1 ELSE 0 END) AS snowy_days
     FROM filtering_features
-    GROUP BY (year_and_week, week_of_year, year, city, region, country, lat, lon, timezone_id)
+    GROUP BY (year_and_week, week_of_year, month, year, city, region, country, lat, lon, timezone_id)
     ORDER BY city
 )
 SELECT * 
