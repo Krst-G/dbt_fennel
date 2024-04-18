@@ -26,7 +26,7 @@ filtering_features AS (
             ,daily_will_it_snow
             ,daily_chance_of_snow
             ,condition_text
-            -- ,condition_icon
+            ,condition_icon
             -- ,condition_code
             -- ,max_wind_kph
             -- ,avg_vis_km
@@ -39,7 +39,7 @@ filtering_features AS (
             -- ,moon_illumination
             -- ,day_of_month
             ,month_of_year
-            -- ,day_of_week
+            ,day_of_week
         FROM joining_day_location
 ),          
 aggregations_adding_features AS (
@@ -54,6 +54,8 @@ aggregations_adding_features AS (
             ,lat            -- grouping on
             ,lon            -- grouping on
             ,timezone_id    -- grouping on
+            ,condition_icon
+            ,day_of_week
             ,MAX(max_temp_c) AS max_temp_c
             ,MIN(min_temp_c) AS min_temp_c
             ,AVG(avg_temp_c) AS avg_temp_c
@@ -86,7 +88,7 @@ aggregations_adding_features AS (
                             'Patchy sleet possible', 'Ice pellets') 
                             THEN 1 ELSE 0 END) AS snowy_days
     FROM filtering_features
-    GROUP BY (year_and_week, week_of_year, month, year, city, region, country, lat, lon, timezone_id)
+    GROUP BY (year_and_week, week_of_year, month, year, city, region, country, lat, lon, timezone_id, condition_icon, day_of_week)
     ORDER BY city
 )
 SELECT * 
