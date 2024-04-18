@@ -50,4 +50,6 @@ group by date
 order by city asc    -- optional
 	,year asc
 	,month asc     --- order by month
-
+)
+SELECT * 
+FROM filtering_features
