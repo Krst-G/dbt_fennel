@@ -16,11 +16,11 @@ select date
 		,lat		--- 2
         ,lon		--- 2
         ,timezone_id--- 2
-		,SUM(CASE WHEN condition_text = 'Sunny' THEN 1 ELSE 0 END) AS sunny_days,
-    	SUM(CASE WHEN condition_text IN 
+		,SUM(CASE WHEN condition_text = 'Sunny' THEN 1 ELSE 0 END) AS sunny_days
+    	,SUM(CASE WHEN condition_text IN 
                     ('Overcast', 'Partly cloudy', 'Cloudy', 'Freezing fog') 
-                    THEN 1 ELSE 0 END) AS other_days,
-    	SUM(CASE WHEN condition_text IN 
+                    THEN 1 ELSE 0 END) AS other_days
+    	,SUM(CASE WHEN condition_text IN 
                     ('Patchy rain possible','Moderate or heavy rain shower', 'Light rain shower',
                     'Mist', 'Moderate rain at times', 'Patchy light rain with thunder',
                     'Patchy light drizzle', 'Thundery outbreaks possible', 'Heavy rain at times', 
@@ -28,8 +28,8 @@ select date
                     'Patchy light rain', 'Heavy rain', 'Moderate rain', 'Torrential rain shower', 
                     'Light snow showers', 'Moderate or heavy snow showers', 'Light freezing rain',
                     'Moderate or heavy freezing rain', 'Heavy freezing drizzle') 
-                    THEN 1 ELSE 0 END) AS rainy_days,
-    	SUM(CASE WHEN condition_text IN 
+                    THEN 1 ELSE 0 END) AS rainy_days
+    	,SUM(CASE WHEN condition_text IN 
                     ('Patchy light snow', 'Heavy snow', 'Light sleet', 'Light snow', 
                     'Moderate snow', 'Light sleet showers', 'Patchy heavy snow',
                     'Patchy moderate snow', 'Moderate or heavy snow with thunder',
@@ -49,5 +49,5 @@ group by date
     ,timezone_id--- 2
 order by city asc    -- optional
 	,year asc
-	,month asc     --- order by month)
+	,month asc     --- order by month
 
