@@ -53,4 +53,4 @@ order by city asc    -- optional
 	,month asc     --- order by month
 )
 SELECT * 
-FROM filtering_conditions;
+FROM filtering_conditions
